@@ -1,0 +1,47 @@
+
+G0: 
+no reward broadcast. 
+Reward * 10. 
+violation penalty
+Learn start @ 200 iteration. 
+Constant LR
+Memory capacity = 100,000
+target replace = 500
+increase ENP margin
+gamma=0.99
+********************************************************************
+#fixed stdize() CONSTANTS                                          *
+#fixed weather forecast bug                                        *
+********************************************************************
+A4                                                                 *
+********************************************************************
+MODEL:                                                             *
+A0        : INPUT->FC1->RELU->FC_OUT->OUTPUT                       *
+LOSS      : MSE                                                    *
+OPTIMIZER : ADAM                                                   *
+RL        : Double DQN                                             * 
+                                                                   *
+LEARNING:   INIT_WEIGHT     = FC1 : KAIMING                        *
+                              OUT : XAVIER                         *
+            WIDTH           = 50                                   *
+            DEPTH           = 1 + 1                                *
+            WEIGHT_DECAY    = NONE                                 *
+            LR              = LR SCHEDULING                        *
+            UPDATE_FREQ     = 18 MONTHS                            *
+            MEMORY          = 36 MONTHS                            *
+            ITERATION       = 100                                  *
+            BATCH_SIZE      = 32                                   *
+            EPSILON         = EPSILON SCHEDULING                   *           
+            GAMMA           = 0.9                                  *
+            LAMBDA          = 0.95                                 *
+                                                                   *
+TRAINING:   TOKYO [2000-2009]                                      *
+            SCHEDULING        = V3                                 *
+            BATTERY_RESET     = 0%                                 *
+            REWARD_FUNC       = 1d                                 *
+            REWARD_BROADCAST  = TRUE                               *
+            VIOLATION PENALTY = NONE                               *
+                                                                   *
+VALIDATION: TOKYO[2000-2018]                                       *
+            GREEDY POLICY                                          *
+********************************************************************

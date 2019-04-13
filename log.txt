@@ -1,0 +1,57 @@
+U1
+- general reward function
+- constant LR  @ 1e-4
+- full reward broadcast
+- gamma = 0.99
+- iterations = 10
+
+
+U0
+- constant LR  @ 1e-4
+- full reward broadcast
+- gamma = 0.99
+- iterations = 10
+-
+
+V3
+- gamma = 0.99
+
+V2
+- full reward broadcast
+
+********************************************************************
+#fixed stdize() CONSTANTS                                          *
+#fixed weather forecast bug                                        *
+********************************************************************
+V1                                                                 *
+********************************************************************
+MODEL:                                                             *
+A0        : INPUT->FC1->RELU->FC_OUT->OUTPUT                       *
+LOSS      : MSE                                                    *
+OPTIMIZER : ADAM                                                   *
+RL        : Dueling Double DQN                                     * 
+                                                                   *
+LEARNING:   INIT_WEIGHT     = FC1 : KAIMING                        *
+                              OUT : XAVIER                         *
+            WIDTH           = 50                                   *
+            DEPTH           = 1 + 1                                *
+            WEIGHT_DECAY    = NONE                                 *
+            LR              = LR SCHEDULING                        *
+            UPDATE_FREQ     = 18 MONTHS (12096)                    *
+            MEMORY          = 36 MONTHS (24192)                    *
+            ITERATION       = 100                                  *
+            BATCH_SIZE      = 32                                   *
+            EPSILON         = EPSILON SCHEDULING                   *           
+            GAMMA           = 0.9                                  *
+            LAMBDA          = 0.95                                 *
+                                                                   *
+TRAINING:   TOKYO [2000-2009]                                      *
+            SCHEDULING        = V3                                 *
+            BATTERY_RESET     = 0%                                 *
+            REWARD_FUNC       = BOPT - [2,-7.5,-17.5]              *
+            REWARD_BROADCAST  = TRUE                               *
+            VIOLATION PENALTY = NONE                               *
+                                                                   *
+VALIDATION: TOKYO[2000-2018]                                       *
+            GREEDY POLICY                                          *
+********************************************************************
